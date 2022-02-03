@@ -15,26 +15,23 @@ class StringCalculator {
     }
     
     func add(numbers: String) throws -> Int {
-        let separator = parseDelimiter(numbers)
-        let intNumbers = numbers
-            .replacingOccurrences(of: "//\(separator)\n", with: "")
+        let delimiter = parseDelimiter(numbers)
+        return try numbers
+            .replacingOccurrences(of: "//\(delimiter)\n", with: "")
             .replacingOccurrences(of: "\n", with: ",")
-            .split(separator: separator)
+            .split(separator: delimiter)
             .compactMap { Int($0) }
-         
-        try verifyAllNumbersPositive(numbers: intNumbers)
-        
-        return intNumbers.reduce(0,+)
+            .verifyAllNumbersPositive()
+            .reduce(0,+)
     }
     
     private func verifyAllNumbersPositive(numbers: [Int]) throws {
         let negativeNumbers = numbers.filter({ $0 < 0 })
         guard negativeNumbers.isEmpty else {
-            let numbers = negativeNumbers.reduce("") { partialResult, number in
-                if number == numbers.last {
-                    return partialResult + "\(number)"
-                }
-                return partialResult + "\(number), "
+            let numbers = negativeNumbers.reduce("") {
+                $1 == numbers.last ?
+                $0 + "\($1)" :
+                $0 + "\($1), "
             }
             throw CalculatorError.negativeNumber(message: "Negatives not allowed: \(numbers)")
         }
@@ -45,6 +42,24 @@ class StringCalculator {
             return ","
         }
         return numbers[numbers.index(numbers.startIndex, offsetBy: 2)]
+    }
+}
+
+extension Array where Element == Int {
+    
+    func verifyAllNumbersPositive() throws -> [Int]{
+        let negativeNumbers = self.filter({ $0 < 0 })
+        
+        if negativeNumbers.isEmpty {
+            return self
+        }
+        
+        let numbersString = negativeNumbers.reduce("") {
+            $1 == self.last ?
+            $0 + "\($1)" :
+            $0 + "\($1), "
+        }
+        throw StringCalculator.CalculatorError.negativeNumber(message: "Negatives not allowed: \(numbersString)")
     }
 }
 
