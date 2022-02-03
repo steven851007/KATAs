@@ -10,8 +10,8 @@ import Calculator
 
 class StringCalculator {
     
-    enum StringCalculatorError: Error {
-        case negativeNumber
+    enum CalculatorError: Error, Equatable {
+        case negativeNumber(message: String)
     }
     
     func add(numbers: String) throws -> Int {
@@ -22,10 +22,9 @@ class StringCalculator {
             .split(separator: separator)
             .compactMap { Int($0) }
             
-        guard intNumbers.allSatisfy({ number in
-            number > 0
-        }) else {
-            throw StringCalculatorError.negativeNumber
+        guard intNumbers.allSatisfy({ $0 > 0 }) else {
+            let negative = intNumbers.first { $0<0 }!
+            throw CalculatorError.negativeNumber(message: "Negatives not allowed: \(negative)")
         }
         
         return intNumbers.reduce(0,+)
@@ -66,7 +65,8 @@ class CalculatorTests: XCTestCase {
     }
     
     func test_add_stringWithNegative() {
-        expectError(numbers: "1,2,3,-4")
+        let expectedError = StringCalculator.CalculatorError.negativeNumber(message: "Negatives not allowed: -4")
+        expectError(numbers: "1,2,3,-4", expectedError: expectedError)
     }
     
     // MARK: Helpers
@@ -75,8 +75,10 @@ class CalculatorTests: XCTestCase {
         XCTAssertEqual(try StringCalculator().add(numbers: numbers), result, file: file, line: line)
     }
     
-    private func expectError(numbers: String, file: StaticString = #file, line: UInt = #line) {
-        XCTAssertThrowsError(try StringCalculator().add(numbers: numbers), file: file, line: line)
+    private func expectError(numbers: String, expectedError: StringCalculator.CalculatorError, file: StaticString = #file, line: UInt = #line) {
+        XCTAssertThrowsError(try StringCalculator().add(numbers: numbers)) { error in
+            XCTAssertEqual(error as! StringCalculator.CalculatorError, expectedError)
+        }
     }
 
 }
