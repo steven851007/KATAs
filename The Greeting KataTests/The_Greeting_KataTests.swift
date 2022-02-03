@@ -9,10 +9,6 @@ import XCTest
 import The_Greeting_Kata
 
 func greet(_ names: [String]) -> String {
-    if names.count == 2 {
-        return "Hello, \(names.first!) and \(names.last!)."
-    }
-    
     let capitalNames = names.filter { name in
         name == name.uppercased()
     }
@@ -25,11 +21,11 @@ func greet(_ names: [String]) -> String {
     return greet(smallNames: smallNames) + greet(shoutedNames: capitalNames)
 }
 
-func greet(shoutedNames: [String]) -> String {
+private func greet(shoutedNames: [String]) -> String {
     " AND HELLO \(shoutedNames.first!)!"
 }
 
-func greet(smallNames names: [String]) -> String {
+private func greet(smallNames names: [String]) -> String {
     if names.count == 2 {
         return "Hello, \(names.first!) and \(names.last!)."
     }
