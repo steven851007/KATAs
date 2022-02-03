@@ -25,7 +25,7 @@ public final class Greeter {
     public func greet(_ names: [String]) -> String {
         let groupedNames = names
             .removeQuotes()
-            .handleCommas()
+            .splitNamesByCommas()
             .separateNamesByCapitalization()
         
         return greet(lowercasedNames: groupedNames.lowercased) + greet(uppercasedNames: groupedNames.uppercased)
@@ -68,7 +68,7 @@ fileprivate extension Array where Element == String {
         return (lowerCasedNames, upperCasedNames)
     }
     
-    func handleCommas() -> [String] {
+    func splitNamesByCommas() -> [String] {
         let smallNames = Array(self.map { name in
             name.components(separatedBy: ", ")
         }.joined())
