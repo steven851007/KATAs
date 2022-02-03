@@ -9,10 +9,11 @@ import XCTest
 import The_Greeting_Kata
 
 func greet(_ names: [String]) -> String {
-    let capitalNames = names.filter { name in
+    let noQuetoesNames = removeQuotes(names)
+    let capitalNames = noQuetoesNames.filter { name in
         name == name.uppercased()
     }
-    let smallNames = Array(names.filter {
+    let smallNames = Array(noQuetoesNames.filter {
         !capitalNames.contains($0)
     }.map { name in
         name.components(separatedBy: ", ")
@@ -23,6 +24,13 @@ func greet(_ names: [String]) -> String {
     }
     
     return greet(smallNames: smallNames) + greet(shoutedNames: capitalNames)
+}
+
+private func removeQuotes(_ names: [String]) -> [String] {
+    let noQuetes = names.map { name in
+        name.replacingOccurrences(of: "\"", with: "")
+    }
+    return noQuetes
 }
 
 private func greet(shoutedNames: [String]) -> String {
@@ -80,6 +88,10 @@ class The_Greeting_KataTests: XCTestCase {
     
     func test_nameWithComma() {
         expect(names: ["Bob", "Charlie, Dianne"], result: "Hello, Bob, Charlie, and Dianne.")
+    }
+    
+    func test_namesWithQuotes() {
+        expect(names: ["Bob", "\"Charlie, Dianne\""], result: "Hello, Bob, Charlie, and Dianne.")
     }
     
     // MARK: Helpers
