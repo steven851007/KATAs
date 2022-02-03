@@ -10,20 +10,29 @@ import The_Greeting_Kata
 
 func greet(_ names: [String]) -> String {
     let noQuetoesNames = removeQuotes(names)
-    let capitalNames = noQuetoesNames.filter { name in
+    let noCommasNames = handleCommas(noQuetoesNames)
+    
+    let capitalNames = noCommasNames.filter { name in
         name == name.uppercased()
     }
-    let smallNames = Array(noQuetoesNames.filter {
+    let smallNames = noCommasNames.filter {
         !capitalNames.contains($0)
-    }.map { name in
-        name.components(separatedBy: ", ")
-    }.joined())
+    }
     
     if capitalNames.isEmpty {
         return greet(smallNames: smallNames)
     }
     
     return greet(smallNames: smallNames) + greet(shoutedNames: capitalNames)
+}
+
+private func handleCommas(_ names: [String]) -> [String] {
+    
+    let smallNames = Array(names.map { name in
+        name.components(separatedBy: ", ")
+    }.joined())
+    
+    return smallNames
 }
 
 private func removeQuotes(_ names: [String]) -> [String] {
