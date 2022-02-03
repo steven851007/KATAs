@@ -12,6 +12,9 @@ func greet(_ name: String?) -> String {
     guard let name = name else {
         return "Hello, my friend."
     }
+    if name == name.uppercased() {
+        return "HELLO \(name)!"
+    }
     return "Hello, \(name)"
 }
 
@@ -25,6 +28,11 @@ class The_Greeting_KataTests: XCTestCase {
     func test_greetingUnknown() {
         let greeting = greet(nil)
         XCTAssertEqual(greeting, "Hello, my friend.")
+    }
+    
+    func test_shouting() {
+        let greeting = greet("JERRY")
+        XCTAssertEqual(greeting, "HELLO JERRY!")
     }
 
 }
