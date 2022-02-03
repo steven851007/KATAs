@@ -8,81 +8,6 @@
 import XCTest
 import The_Greeting_Kata
 
-class Greeter {
-    
-    func greet(_ name: String?) -> String {
-        guard let name = name else {
-            return "Hello, my friend."
-        }
-        if name == name.uppercased() {
-            return "HELLO \(name)!"
-        }
-        return "Hello, \(name)"
-    }
-    
-    func greet(_ names: [String]) -> String {
-        let noQuetoesNames = removeQuotes(names)
-        let noCommasNames = handleCommas(noQuetoesNames)
-        let seperatedNames = separateNamesByCapitalization(noCommasNames)
-        
-        if seperatedNames.uppercased.isEmpty {
-            return greet(smallNames: seperatedNames.lowercased)
-        }
-        
-        return greet(smallNames: seperatedNames.lowercased) + greet(shoutedNames: seperatedNames.uppercased)
-    }
-
-    private func separateNamesByCapitalization(_ names: [String]) -> (lowercased: [String], uppercased: [String]) {
-        let upperCasedNames = names.filter { name in
-            name == name.uppercased()
-        }
-        let lowerCasedNames = names.filter {
-            !upperCasedNames.contains($0)
-        }
-        return (lowerCasedNames, upperCasedNames)
-    }
-
-    private func handleCommas(_ names: [String]) -> [String] {
-        let smallNames = Array(names.map { name in
-            name.components(separatedBy: ", ")
-        }.joined())
-        
-        return smallNames
-    }
-
-    private func removeQuotes(_ names: [String]) -> [String] {
-        let noQuetes = names.map { name in
-            name.replacingOccurrences(of: "\"", with: "")
-        }
-        return noQuetes
-    }
-
-    private func greet(shoutedNames: [String]) -> String {
-        shoutedNames.reduce(" AND HELLO") { partialResult, name in
-            if name == shoutedNames.last {
-                return partialResult + " " + name + "!"
-            }
-            return partialResult + " " + name + ","
-        }
-    }
-
-    private func greet(smallNames names: [String]) -> String {
-        if names.count == 2 {
-            return "Hello, \(names.first!) and \(names.last!)."
-        }
-        let greeting = names.reduce("Hello") { partialResult, name in
-            if name == names.last {
-                return partialResult + ", and " + name + "."
-            }
-            return partialResult + ", " + name
-        }
-        return greeting
-    }
-
-    
-}
-
-
 class The_Greeting_KataTests: XCTestCase {
     
     func test_simpleGreeting() {
@@ -91,10 +16,15 @@ class The_Greeting_KataTests: XCTestCase {
     
     func test_greetingUnknown() {
         expect(name: nil, result: "Hello, my friend.")
+        expect(names: [], result: "Hello, my friend.")
     }
     
     func test_shouting() {
         expect(name: "JERRY", result: "HELLO JERRY!")
+    }
+    
+    func test_oneName() {
+        expect(names: ["Jill"], result: "Hello, Jill")
     }
     
     func test_twoNames() {

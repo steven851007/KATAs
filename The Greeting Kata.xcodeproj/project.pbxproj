@@ -11,6 +11,7 @@
 		87962B2C27AB8E2800655688 /* The_Greeting_Kata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87962B2127AB8E2800655688 /* The_Greeting_Kata.framework */; };
 		87962B3127AB8E2800655688 /* The_Greeting_KataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87962B3027AB8E2800655688 /* The_Greeting_KataTests.swift */; };
 		87962B3227AB8E2800655688 /* The_Greeting_Kata.h in Headers */ = {isa = PBXBuildFile; fileRef = 87962B2427AB8E2800655688 /* The_Greeting_Kata.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		87962B3C27ABA3A800655688 /* Greeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87962B3B27ABA3A800655688 /* Greeter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		87962B2527AB8E2800655688 /* The_Greeting_Kata.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = The_Greeting_Kata.docc; sourceTree = "<group>"; };
 		87962B2B27AB8E2800655688 /* The Greeting KataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "The Greeting KataTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87962B3027AB8E2800655688 /* The_Greeting_KataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = The_Greeting_KataTests.swift; sourceTree = "<group>"; };
+		87962B3B27ABA3A800655688 /* Greeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Greeter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				87962B2427AB8E2800655688 /* The_Greeting_Kata.h */,
+				87962B3B27ABA3A800655688 /* Greeter.swift */,
 				87962B2527AB8E2800655688 /* The_Greeting_Kata.docc */,
 			);
 			path = "The Greeting Kata";
@@ -194,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87962B3C27ABA3A800655688 /* Greeter.swift in Sources */,
 				87962B2627AB8E2800655688 /* The_Greeting_Kata.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,6 +399,7 @@
 		87962B3927AB8E2800655688 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -409,6 +414,7 @@
 		87962B3A27AB8E2800655688 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
