@@ -64,7 +64,6 @@ class Greeter {
             }
             return partialResult + " " + name + ","
         }
-//        " AND HELLO \(shoutedNames.first!)!"
     }
 
     private func greet(smallNames names: [String]) -> String {
