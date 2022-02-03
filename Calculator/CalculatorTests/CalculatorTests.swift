@@ -22,9 +22,8 @@ class StringCalculator {
             .split(separator: separator)
             .compactMap { Int($0) }
             
-        guard intNumbers.allSatisfy({ $0 > 0 }) else {
-            let negative = intNumbers.first { $0<0 }!
-            throw CalculatorError.negativeNumber(message: "Negatives not allowed: \(negative)")
+        if let negativeNumber = intNumbers.first(where: { $0<0 }) {
+            throw CalculatorError.negativeNumber(message: "Negatives not allowed: \(negativeNumber)")
         }
         
         return intNumbers.reduce(0,+)
