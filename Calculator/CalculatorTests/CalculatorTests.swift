@@ -90,6 +90,11 @@ class CalculatorTests: XCTestCase {
     }
     
     func test_add_stringWithNegative() {
+        let expectedError = StringCalculator.CalculatorError.negativeNumber(message: "Negatives not allowed: -4")
+        expectError(numbers: "1,2,3,-4", expectedError: expectedError)
+    }
+    
+    func test_add_stringWithNegatives() {
         let expectedError = StringCalculator.CalculatorError.negativeNumber(message: "Negatives not allowed: -2, -3, -4")
         expectError(numbers: "1,-2,-3,-4", expectedError: expectedError)
     }
