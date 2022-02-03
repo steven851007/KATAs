@@ -12,6 +12,27 @@ func greet(_ names: [String]) -> String {
     if names.count == 2 {
         return "Hello, \(names.first!) and \(names.last!)."
     }
+    
+    let capitalNames = names.filter { name in
+        name == name.uppercased()
+    }
+    let smallNames = names.filter { !capitalNames.contains($0) }
+    
+    if capitalNames.isEmpty {
+        return greet(smallNames: smallNames)
+    }
+    
+    return greet(smallNames: smallNames) + greet(shoutedNames: capitalNames)
+}
+
+func greet(shoutedNames: [String]) -> String {
+    " AND HELLO \(shoutedNames.first!)!"
+}
+
+func greet(smallNames names: [String]) -> String {
+    if names.count == 2 {
+        return "Hello, \(names.first!) and \(names.last!)."
+    }
     let greeting = names.reduce("Hello") { partialResult, name in
         if name == names.last {
             return partialResult + ", and " + name + "."
@@ -51,6 +72,10 @@ class The_Greeting_KataTests: XCTestCase {
     
     func test_multipleNames() {
         expect(names: ["Amy", "Brian", "Charlotte"], result: "Hello, Amy, Brian, and Charlotte.")
+    }
+    
+    func test_multipleNamesWithShouting() {
+        expect(names: ["Amy", "BRIAN", "Charlotte"], result: "Hello, Amy and Charlotte. AND HELLO BRIAN!")
     }
     
     // MARK: Helpers
