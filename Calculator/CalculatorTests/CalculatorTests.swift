@@ -21,12 +21,23 @@ class StringCalculator {
             .replacingOccurrences(of: "\n", with: ",")
             .split(separator: separator)
             .compactMap { Int($0) }
-            
-        if let negativeNumber = intNumbers.first(where: { $0<0 }) {
-            throw CalculatorError.negativeNumber(message: "Negatives not allowed: \(negativeNumber)")
-        }
+         
+        try verifyAllNumbersPositive(numbers: intNumbers)
         
         return intNumbers.reduce(0,+)
+    }
+    
+    private func verifyAllNumbersPositive(numbers: [Int]) throws {
+        let negativeNumbers = numbers.filter({ $0 < 0 })
+        guard negativeNumbers.isEmpty else {
+            let numbers = negativeNumbers.reduce("") { partialResult, number in
+                if number == numbers.last {
+                    return partialResult + "\(number)"
+                }
+                return partialResult + "\(number), "
+            }
+            throw CalculatorError.negativeNumber(message: "Negatives not allowed: \(numbers)")
+        }
     }
     
     private func parseDelimiter(_ numbers: String) -> Character {
@@ -64,8 +75,8 @@ class CalculatorTests: XCTestCase {
     }
     
     func test_add_stringWithNegative() {
-        let expectedError = StringCalculator.CalculatorError.negativeNumber(message: "Negatives not allowed: -4")
-        expectError(numbers: "1,2,3,-4", expectedError: expectedError)
+        let expectedError = StringCalculator.CalculatorError.negativeNumber(message: "Negatives not allowed: -2, -3, -4")
+        expectError(numbers: "1,-2,-3,-4", expectedError: expectedError)
     }
     
     // MARK: Helpers
@@ -75,8 +86,8 @@ class CalculatorTests: XCTestCase {
     }
     
     private func expectError(numbers: String, expectedError: StringCalculator.CalculatorError, file: StaticString = #file, line: UInt = #line) {
-        XCTAssertThrowsError(try StringCalculator().add(numbers: numbers)) { error in
-            XCTAssertEqual(error as! StringCalculator.CalculatorError, expectedError)
+        XCTAssertThrowsError(try StringCalculator().add(numbers: numbers), file: file, line: line) { error in
+            XCTAssertEqual(error as! StringCalculator.CalculatorError, expectedError, file: file, line: line)
         }
     }
 
