@@ -9,14 +9,26 @@ import XCTest
 import Calculator
 
 class StringCalculator {
-    func add(numbers: String) -> Int {
+    
+    enum StringCalculatorError: Error {
+        case negativeNumber
+    }
+    
+    func add(numbers: String) throws -> Int {
         let separator = parseDelimiter(numbers)
-        return numbers
+        let intNumbers = numbers
             .replacingOccurrences(of: "//\(separator)\n", with: "")
             .replacingOccurrences(of: "\n", with: ",")
             .split(separator: separator)
             .compactMap { Int($0) }
-            .reduce(0,+)
+            
+        guard intNumbers.allSatisfy({ number in
+            number > 0
+        }) else {
+            throw StringCalculatorError.negativeNumber
+        }
+        
+        return intNumbers.reduce(0,+)
     }
     
     private func parseDelimiter(_ numbers: String) -> Character {
@@ -30,27 +42,41 @@ class StringCalculator {
 class CalculatorTests: XCTestCase {
 
     func test_add_emptyString() {
-        XCTAssertEqual(StringCalculator().add(numbers: ""), 0)
+        expect(numbers: "", result: 0)
     }
     
     func test_add_stringWithOneNumber() {
-        XCTAssertEqual(StringCalculator().add(numbers: "1"), 1)
+        expect(numbers: "1", result: 1)
     }
     
     func test_add_stringWithTwoNumbers() {
-        XCTAssertEqual(StringCalculator().add(numbers: "1,2"), 3)
+        expect(numbers: "1,2", result: 3)
     }
     
     func test_add_stringWithMoreNumbers() {
-        XCTAssertEqual(StringCalculator().add(numbers: "1,2,3,4"), 10)
+        expect(numbers: "1,2,3,4", result: 10)
     }
     
     func test_add_stringWithNewLine() {
-        XCTAssertEqual(StringCalculator().add(numbers: "1\n2,3,4"), 10)
+        expect(numbers: "1\n2,3,4", result: 10)
     }
     
     func test_add_stringWithDifferentDelimiter() {
-        XCTAssertEqual(StringCalculator().add(numbers: "//;\n1;2"), 3)
+        expect(numbers: "//;\n1;2", result: 3)
+    }
+    
+    func test_add_stringWithNegative() {
+        expectError(numbers: "1,2,3,-4")
+    }
+    
+    // MARK: Helpers
+    
+    private func expect(numbers: String, result: Int, file: StaticString = #file, line: UInt = #line) {
+        XCTAssertEqual(try StringCalculator().add(numbers: numbers), result, file: file, line: line)
+    }
+    
+    private func expectError(numbers: String, file: StaticString = #file, line: UInt = #line) {
+        XCTAssertThrowsError(try StringCalculator().add(numbers: numbers), file: file, line: line)
     }
 
 }
