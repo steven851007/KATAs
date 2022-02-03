@@ -1,4 +1,4 @@
-# Practice for the Greeting Kata found below ⬇️
+# Practice for the Greeting Kata in Swift found below ⬇️
 
 # The Greeting Kata
 
