@@ -12,7 +12,11 @@ func greet(_ names: [String]) -> String {
     let capitalNames = names.filter { name in
         name == name.uppercased()
     }
-    let smallNames = names.filter { !capitalNames.contains($0) }
+    let smallNames = Array(names.filter {
+        !capitalNames.contains($0)
+    }.map { name in
+        name.components(separatedBy: ", ")
+    }.joined())
     
     if capitalNames.isEmpty {
         return greet(smallNames: smallNames)
@@ -72,6 +76,10 @@ class The_Greeting_KataTests: XCTestCase {
     
     func test_multipleNamesWithShouting() {
         expect(names: ["Amy", "BRIAN", "Charlotte"], result: "Hello, Amy and Charlotte. AND HELLO BRIAN!")
+    }
+    
+    func test_nameWithComma() {
+        expect(names: ["Bob", "Charlie, Dianne"], result: "Hello, Bob, Charlie, and Dianne.")
     }
     
     // MARK: Helpers
