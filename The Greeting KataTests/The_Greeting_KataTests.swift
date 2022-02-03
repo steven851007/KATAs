@@ -9,7 +9,16 @@ import XCTest
 import The_Greeting_Kata
 
 func greet(_ names: [String]) -> String {
-    return "Hello, \(names.first!) and \(names.last!)."
+    if names.count == 2 {
+        return "Hello, \(names.first!) and \(names.last!)."
+    }
+    let greeting = names.reduce("Hello") { partialResult, name in
+        if name == names.last {
+            return partialResult + ", and " + name + "."
+        }
+        return partialResult + ", " + name
+    }
+    return greeting
 }
 
 func greet(_ name: String?) -> String {
@@ -36,8 +45,12 @@ class The_Greeting_KataTests: XCTestCase {
         expect(name: "JERRY", result: "HELLO JERRY!")
     }
     
-    func test_multipleNames() {
+    func test_twoNames() {
         expect(names: ["Jill", "Jane"], result: "Hello, Jill and Jane.")
+    }
+    
+    func test_multipleNames() {
+        expect(names: ["Amy", "Brian", "Charlotte"], result: "Hello, Amy, Brian, and Charlotte.")
     }
     
     // MARK: Helpers
