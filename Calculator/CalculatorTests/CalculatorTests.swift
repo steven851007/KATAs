@@ -10,7 +10,10 @@ import Calculator
 
 class StringCalculator {
     func add(numbers: String) -> Int {
-        0
+        guard !numbers.isEmpty else {
+            return 0
+        }
+        return 1
     }
 }
 
@@ -18,6 +21,10 @@ class CalculatorTests: XCTestCase {
 
     func test_add_emptyString() {
         XCTAssertEqual(StringCalculator().add(numbers: ""), 0)
+    }
+    
+    func test_add_stringWithOneNumber() {
+        XCTAssertEqual(StringCalculator().add(numbers: "1"), 1)
     }
 
 }
