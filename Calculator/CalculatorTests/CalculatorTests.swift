@@ -23,8 +23,7 @@ class StringCalculator {
         guard numbers.hasPrefix("//") else {
             return ","
         }
-        let foo = numbers.index(numbers.startIndex, offsetBy: 2)
-        return numbers[foo]
+        return numbers[numbers.index(numbers.startIndex, offsetBy: 2)]
     }
 }
 
