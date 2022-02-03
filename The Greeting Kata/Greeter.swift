@@ -37,9 +37,8 @@ public final class Greeter {
 
     private func greet(uppercasedNames: [String]) -> String {
         uppercasedNames.reduce(" AND HELLO") { partialResult, name in
-            return name == uppercasedNames.last ?
-            partialResult + " " + name + "!" :
-            partialResult + " " + name + ","
+            let separator = name == uppercasedNames.last ? "!" : ","
+            return partialResult + " " + name + separator
         }
     }
 
