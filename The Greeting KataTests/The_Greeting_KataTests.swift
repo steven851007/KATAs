@@ -8,6 +8,10 @@
 import XCTest
 import The_Greeting_Kata
 
+func greet(_ names: [String]) -> String {
+    return "Hello, \(names.first!) and \(names.last!)."
+}
+
 func greet(_ name: String?) -> String {
     guard let name = name else {
         return "Hello, my friend."
@@ -32,11 +36,20 @@ class The_Greeting_KataTests: XCTestCase {
         expect(name: "JERRY", result: "HELLO JERRY!")
     }
     
+    func test_multipleNames() {
+        expect(names: ["Jill", "Jane"], result: "Hello, Jill and Jane.")
+    }
+    
     // MARK: Helpers
     
-    private func expect(name: String?, result: String) {
+    private func expect(name: String?, result: String, file: StaticString = #file, line: UInt = #line) {
         let greeting = greet(name)
         XCTAssertEqual(greeting, result)
+    }
+    
+    private func expect(names: [String], result: String, file: StaticString = #file, line: UInt = #line) {
+        let greeting = greet(names)
+        XCTAssertEqual(greeting, result, file: file, line: line)
     }
 
 }
