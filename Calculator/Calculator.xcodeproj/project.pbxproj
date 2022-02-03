@@ -7,156 +7,153 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		87962B2627AB8E2800655688 /* The_Greeting_Kata.docc in Sources */ = {isa = PBXBuildFile; fileRef = 87962B2527AB8E2800655688 /* The_Greeting_Kata.docc */; };
-		87962B2C27AB8E2800655688 /* The_Greeting_Kata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87962B2127AB8E2800655688 /* The_Greeting_Kata.framework */; };
-		87962B3127AB8E2800655688 /* The_Greeting_KataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87962B3027AB8E2800655688 /* The_Greeting_KataTests.swift */; };
-		87962B3227AB8E2800655688 /* The_Greeting_Kata.h in Headers */ = {isa = PBXBuildFile; fileRef = 87962B2427AB8E2800655688 /* The_Greeting_Kata.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		87962B3C27ABA3A800655688 /* Greeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87962B3B27ABA3A800655688 /* Greeter.swift */; };
+		87768E6F27ABEC8900308221 /* Calculator.docc in Sources */ = {isa = PBXBuildFile; fileRef = 87768E6E27ABEC8900308221 /* Calculator.docc */; };
+		87768E7527ABEC8900308221 /* Calculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87768E6A27ABEC8900308221 /* Calculator.framework */; };
+		87768E7A27ABEC8900308221 /* CalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87768E7927ABEC8900308221 /* CalculatorTests.swift */; };
+		87768E7B27ABEC8A00308221 /* Calculator.h in Headers */ = {isa = PBXBuildFile; fileRef = 87768E6D27ABEC8900308221 /* Calculator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		87962B2D27AB8E2800655688 /* PBXContainerItemProxy */ = {
+		87768E7627ABEC8900308221 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 87962B1827AB8E2800655688 /* Project object */;
+			containerPortal = 87768E6127ABEC8900308221 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 87962B2027AB8E2800655688;
-			remoteInfo = "The Greeting Kata";
+			remoteGlobalIDString = 87768E6927ABEC8900308221;
+			remoteInfo = Calculator;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		87962B2127AB8E2800655688 /* The_Greeting_Kata.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = The_Greeting_Kata.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		87962B2427AB8E2800655688 /* The_Greeting_Kata.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = The_Greeting_Kata.h; sourceTree = "<group>"; };
-		87962B2527AB8E2800655688 /* The_Greeting_Kata.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = The_Greeting_Kata.docc; sourceTree = "<group>"; };
-		87962B2B27AB8E2800655688 /* The Greeting KataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "The Greeting KataTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		87962B3027AB8E2800655688 /* The_Greeting_KataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = The_Greeting_KataTests.swift; sourceTree = "<group>"; };
-		87962B3B27ABA3A800655688 /* Greeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Greeter.swift; sourceTree = "<group>"; };
+		87768E6A27ABEC8900308221 /* Calculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Calculator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87768E6D27ABEC8900308221 /* Calculator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
+		87768E6E27ABEC8900308221 /* Calculator.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Calculator.docc; sourceTree = "<group>"; };
+		87768E7427ABEC8900308221 /* CalculatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		87768E7927ABEC8900308221 /* CalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		87962B1E27AB8E2800655688 /* Frameworks */ = {
+		87768E6727ABEC8900308221 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		87962B2827AB8E2800655688 /* Frameworks */ = {
+		87768E7127ABEC8900308221 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87962B2C27AB8E2800655688 /* The_Greeting_Kata.framework in Frameworks */,
+				87768E7527ABEC8900308221 /* Calculator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		87962B1727AB8E2800655688 = {
+		87768E6027ABEC8900308221 = {
 			isa = PBXGroup;
 			children = (
-				87962B2327AB8E2800655688 /* The Greeting Kata */,
-				87962B2F27AB8E2800655688 /* The Greeting KataTests */,
-				87962B2227AB8E2800655688 /* Products */,
+				87768E6C27ABEC8900308221 /* Calculator */,
+				87768E7827ABEC8900308221 /* CalculatorTests */,
+				87768E6B27ABEC8900308221 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		87962B2227AB8E2800655688 /* Products */ = {
+		87768E6B27ABEC8900308221 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				87962B2127AB8E2800655688 /* The_Greeting_Kata.framework */,
-				87962B2B27AB8E2800655688 /* The Greeting KataTests.xctest */,
+				87768E6A27ABEC8900308221 /* Calculator.framework */,
+				87768E7427ABEC8900308221 /* CalculatorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		87962B2327AB8E2800655688 /* The Greeting Kata */ = {
+		87768E6C27ABEC8900308221 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
-				87962B2427AB8E2800655688 /* The_Greeting_Kata.h */,
-				87962B3B27ABA3A800655688 /* Greeter.swift */,
-				87962B2527AB8E2800655688 /* The_Greeting_Kata.docc */,
+				87768E6D27ABEC8900308221 /* Calculator.h */,
+				87768E6E27ABEC8900308221 /* Calculator.docc */,
 			);
-			path = "The Greeting Kata";
+			path = Calculator;
 			sourceTree = "<group>";
 		};
-		87962B2F27AB8E2800655688 /* The Greeting KataTests */ = {
+		87768E7827ABEC8900308221 /* CalculatorTests */ = {
 			isa = PBXGroup;
 			children = (
-				87962B3027AB8E2800655688 /* The_Greeting_KataTests.swift */,
+				87768E7927ABEC8900308221 /* CalculatorTests.swift */,
 			);
-			path = "The Greeting KataTests";
+			path = CalculatorTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		87962B1C27AB8E2800655688 /* Headers */ = {
+		87768E6527ABEC8900308221 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87962B3227AB8E2800655688 /* The_Greeting_Kata.h in Headers */,
+				87768E7B27ABEC8A00308221 /* Calculator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		87962B2027AB8E2800655688 /* The Greeting Kata */ = {
+		87768E6927ABEC8900308221 /* Calculator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 87962B3527AB8E2800655688 /* Build configuration list for PBXNativeTarget "The Greeting Kata" */;
+			buildConfigurationList = 87768E7E27ABEC8A00308221 /* Build configuration list for PBXNativeTarget "Calculator" */;
 			buildPhases = (
-				87962B1C27AB8E2800655688 /* Headers */,
-				87962B1D27AB8E2800655688 /* Sources */,
-				87962B1E27AB8E2800655688 /* Frameworks */,
-				87962B1F27AB8E2800655688 /* Resources */,
+				87768E6527ABEC8900308221 /* Headers */,
+				87768E6627ABEC8900308221 /* Sources */,
+				87768E6727ABEC8900308221 /* Frameworks */,
+				87768E6827ABEC8900308221 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "The Greeting Kata";
-			productName = "The Greeting Kata";
-			productReference = 87962B2127AB8E2800655688 /* The_Greeting_Kata.framework */;
+			name = Calculator;
+			productName = Calculator;
+			productReference = 87768E6A27ABEC8900308221 /* Calculator.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		87962B2A27AB8E2800655688 /* The Greeting KataTests */ = {
+		87768E7327ABEC8900308221 /* CalculatorTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 87962B3827AB8E2800655688 /* Build configuration list for PBXNativeTarget "The Greeting KataTests" */;
+			buildConfigurationList = 87768E8127ABEC8A00308221 /* Build configuration list for PBXNativeTarget "CalculatorTests" */;
 			buildPhases = (
-				87962B2727AB8E2800655688 /* Sources */,
-				87962B2827AB8E2800655688 /* Frameworks */,
-				87962B2927AB8E2800655688 /* Resources */,
+				87768E7027ABEC8900308221 /* Sources */,
+				87768E7127ABEC8900308221 /* Frameworks */,
+				87768E7227ABEC8900308221 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				87962B2E27AB8E2800655688 /* PBXTargetDependency */,
+				87768E7727ABEC8900308221 /* PBXTargetDependency */,
 			);
-			name = "The Greeting KataTests";
-			productName = "The Greeting KataTests";
-			productReference = 87962B2B27AB8E2800655688 /* The Greeting KataTests.xctest */;
+			name = CalculatorTests;
+			productName = CalculatorTests;
+			productReference = 87768E7427ABEC8900308221 /* CalculatorTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		87962B1827AB8E2800655688 /* Project object */ = {
+		87768E6127ABEC8900308221 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
-					87962B2027AB8E2800655688 = {
+					87768E6927ABEC8900308221 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
-					87962B2A27AB8E2800655688 = {
+					87768E7327ABEC8900308221 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
 				};
 			};
-			buildConfigurationList = 87962B1B27AB8E2800655688 /* Build configuration list for PBXProject "The Greeting Kata" */;
+			buildConfigurationList = 87768E6427ABEC8900308221 /* Build configuration list for PBXProject "Calculator" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -164,26 +161,26 @@
 				en,
 				Base,
 			);
-			mainGroup = 87962B1727AB8E2800655688;
-			productRefGroup = 87962B2227AB8E2800655688 /* Products */;
+			mainGroup = 87768E6027ABEC8900308221;
+			productRefGroup = 87768E6B27ABEC8900308221 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				87962B2027AB8E2800655688 /* The Greeting Kata */,
-				87962B2A27AB8E2800655688 /* The Greeting KataTests */,
+				87768E6927ABEC8900308221 /* Calculator */,
+				87768E7327ABEC8900308221 /* CalculatorTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		87962B1F27AB8E2800655688 /* Resources */ = {
+		87768E6827ABEC8900308221 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		87962B2927AB8E2800655688 /* Resources */ = {
+		87768E7227ABEC8900308221 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -193,35 +190,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		87962B1D27AB8E2800655688 /* Sources */ = {
+		87768E6627ABEC8900308221 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87962B3C27ABA3A800655688 /* Greeter.swift in Sources */,
-				87962B2627AB8E2800655688 /* The_Greeting_Kata.docc in Sources */,
+				87768E6F27ABEC8900308221 /* Calculator.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		87962B2727AB8E2800655688 /* Sources */ = {
+		87768E7027ABEC8900308221 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87962B3127AB8E2800655688 /* The_Greeting_KataTests.swift in Sources */,
+				87768E7A27ABEC8900308221 /* CalculatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		87962B2E27AB8E2800655688 /* PBXTargetDependency */ = {
+		87768E7727ABEC8900308221 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 87962B2027AB8E2800655688 /* The Greeting Kata */;
-			targetProxy = 87962B2D27AB8E2800655688 /* PBXContainerItemProxy */;
+			target = 87768E6927ABEC8900308221 /* Calculator */;
+			targetProxy = 87768E7627ABEC8900308221 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		87962B3327AB8E2800655688 /* Debug */ = {
+		87768E7C27ABEC8A00308221 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -285,7 +281,7 @@
 			};
 			name = Debug;
 		};
-		87962B3427AB8E2800655688 /* Release */ = {
+		87768E7D27ABEC8A00308221 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -342,7 +338,7 @@
 			};
 			name = Release;
 		};
-		87962B3627AB8E2800655688 /* Debug */ = {
+		87768E7F27ABEC8A00308221 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -361,7 +357,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.istvanBalogh.The-Greeting-Kata";
+				PRODUCT_BUNDLE_IDENTIFIER = com.istvanBalogh.Calculator;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -369,7 +365,7 @@
 			};
 			name = Debug;
 		};
-		87962B3727AB8E2800655688 /* Release */ = {
+		87768E8027ABEC8A00308221 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -388,7 +384,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.istvanBalogh.The-Greeting-Kata";
+				PRODUCT_BUNDLE_IDENTIFIER = com.istvanBalogh.Calculator;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -396,30 +392,28 @@
 			};
 			name = Release;
 		};
-		87962B3927AB8E2800655688 /* Debug */ = {
+		87768E8227ABEC8A00308221 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.istvanBalogh.The-Greeting-KataTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.istvanBalogh.CalculatorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		87962B3A27AB8E2800655688 /* Release */ = {
+		87768E8327ABEC8A00308221 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.istvanBalogh.The-Greeting-KataTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.istvanBalogh.CalculatorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -429,34 +423,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		87962B1B27AB8E2800655688 /* Build configuration list for PBXProject "The Greeting Kata" */ = {
+		87768E6427ABEC8900308221 /* Build configuration list for PBXProject "Calculator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				87962B3327AB8E2800655688 /* Debug */,
-				87962B3427AB8E2800655688 /* Release */,
+				87768E7C27ABEC8A00308221 /* Debug */,
+				87768E7D27ABEC8A00308221 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		87962B3527AB8E2800655688 /* Build configuration list for PBXNativeTarget "The Greeting Kata" */ = {
+		87768E7E27ABEC8A00308221 /* Build configuration list for PBXNativeTarget "Calculator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				87962B3627AB8E2800655688 /* Debug */,
-				87962B3727AB8E2800655688 /* Release */,
+				87768E7F27ABEC8A00308221 /* Debug */,
+				87768E8027ABEC8A00308221 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		87962B3827AB8E2800655688 /* Build configuration list for PBXNativeTarget "The Greeting KataTests" */ = {
+		87768E8127ABEC8A00308221 /* Build configuration list for PBXNativeTarget "CalculatorTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				87962B3927AB8E2800655688 /* Debug */,
-				87962B3A27AB8E2800655688 /* Release */,
+				87768E8227ABEC8A00308221 /* Debug */,
+				87768E8327ABEC8A00308221 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 87962B1827AB8E2800655688 /* Project object */;
+	rootObject = 87768E6127ABEC8900308221 /* Project object */;
 }
