@@ -23,20 +23,17 @@ public final class Greeter {
     }
     
     public func greet(_ names: [String]) -> String {
-        let seperatedNames = names
+        let groupedNames = names
             .removeQuotes()
             .handleCommas()
             .separateNamesByCapitalization()
         
-        if seperatedNames.uppercased.isEmpty {
-            return greet(lowercasedNames: seperatedNames.lowercased)
-        }
-        
-        return greet(lowercasedNames: seperatedNames.lowercased) + greet(uppercasedNames: seperatedNames.uppercased)
+        return greet(lowercasedNames: groupedNames.lowercased) + greet(uppercasedNames: groupedNames.uppercased)
     }
 
-    private func greet(uppercasedNames: [String]) -> String {
-        uppercasedNames.reduce(" AND HELLO") { partialResult, name in
+    private func greet(uppercasedNames: [String]) -> String  {
+        guard !uppercasedNames.isEmpty else { return "" }
+        return uppercasedNames.reduce(" AND HELLO") { partialResult, name in
             let separator = name == uppercasedNames.last ? "!" : ","
             return partialResult + " " + name + separator
         }
