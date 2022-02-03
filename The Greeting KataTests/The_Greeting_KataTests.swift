@@ -21,18 +21,22 @@ func greet(_ name: String?) -> String {
 class The_Greeting_KataTests: XCTestCase {
     
     func test_simpleGreeting() {
-        let greeting = greet("Bob")
-        XCTAssertEqual(greeting, "Hello, Bob")
+        expect(name: "Bob", result: "Hello, Bob")
     }
     
     func test_greetingUnknown() {
-        let greeting = greet(nil)
-        XCTAssertEqual(greeting, "Hello, my friend.")
+        expect(name: nil, result: "Hello, my friend.")
     }
     
     func test_shouting() {
-        let greeting = greet("JERRY")
-        XCTAssertEqual(greeting, "HELLO JERRY!")
+        expect(name: "JERRY", result: "HELLO JERRY!")
+    }
+    
+    // MARK: Helpers
+    
+    private func expect(name: String?, result: String) {
+        let greeting = greet(name)
+        XCTAssertEqual(greeting, result)
     }
 
 }
