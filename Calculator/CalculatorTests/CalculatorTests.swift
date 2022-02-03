@@ -10,11 +10,21 @@ import Calculator
 
 class StringCalculator {
     func add(numbers: String) -> Int {
-        numbers
+        let separator = parseDelimiter(numbers)
+        return numbers
+            .replacingOccurrences(of: "//\(separator)\n", with: "")
             .replacingOccurrences(of: "\n", with: ",")
-            .split(separator: ",")
+            .split(separator: separator)
             .compactMap { Int($0) }
             .reduce(0,+)
+    }
+    
+    private func parseDelimiter(_ numbers: String) -> Character {
+        guard numbers.hasPrefix("//") else {
+            return ","
+        }
+        let foo = numbers.index(numbers.startIndex, offsetBy: 2)
+        return numbers[foo]
     }
 }
 
@@ -38,6 +48,10 @@ class CalculatorTests: XCTestCase {
     
     func test_add_stringWithNewLine() {
         XCTAssertEqual(StringCalculator().add(numbers: "1\n2,3,4"), 10)
+    }
+    
+    func test_add_stringWithDifferentDelimiter() {
+        XCTAssertEqual(StringCalculator().add(numbers: "//;\n1;2"), 3)
     }
 
 }
