@@ -10,9 +10,6 @@ import Calculator
 
 class StringCalculator {
     func add(numbers: String) -> Int {
-        guard !numbers.isEmpty else {
-            return 0
-        }
         return numbers
             .split(separator: ",")
             .compactMap { Int($0) }
