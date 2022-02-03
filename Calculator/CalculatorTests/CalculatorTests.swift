@@ -13,7 +13,10 @@ class StringCalculator {
         guard !numbers.isEmpty else {
             return 0
         }
-        return 1
+        return numbers
+            .split(separator: ",")
+            .compactMap { Int($0) }
+            .reduce(0,+)
     }
 }
 
@@ -25,6 +28,10 @@ class CalculatorTests: XCTestCase {
     
     func test_add_stringWithOneNumber() {
         XCTAssertEqual(StringCalculator().add(numbers: "1"), 1)
+    }
+    
+    func test_add_stringWithTwoNumbers() {
+        XCTAssertEqual(StringCalculator().add(numbers: "1,2"), 3)
     }
 
 }
