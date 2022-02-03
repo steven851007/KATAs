@@ -10,7 +10,8 @@ import Calculator
 
 class StringCalculator {
     func add(numbers: String) -> Int {
-        return numbers
+        numbers
+            .replacingOccurrences(of: "\n", with: ",")
             .split(separator: ",")
             .compactMap { Int($0) }
             .reduce(0,+)
@@ -29,6 +30,14 @@ class CalculatorTests: XCTestCase {
     
     func test_add_stringWithTwoNumbers() {
         XCTAssertEqual(StringCalculator().add(numbers: "1,2"), 3)
+    }
+    
+    func test_add_stringWithMoreNumbers() {
+        XCTAssertEqual(StringCalculator().add(numbers: "1,2,3,4"), 10)
+    }
+    
+    func test_add_stringWithNewLine() {
+        XCTAssertEqual(StringCalculator().add(numbers: "1\n2,3,4"), 10)
     }
 
 }
