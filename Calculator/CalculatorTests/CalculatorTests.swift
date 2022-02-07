@@ -29,6 +29,7 @@ class StringCalculator {
             .split(separator: delimiter)
             .compactMap { Int($0) }
             .verifyAllNumbersPositive()
+            .filter { $0 <= 1000 }
             .reduce(0,+)
         
         delegate?.didFinishAdd()
@@ -116,6 +117,12 @@ class CalculatorTests: XCTestCase {
         let _ = try sut.add(numbers: "5")
         
         XCTAssertEqual(delegateSpy.didFinishAddCalledCount, 1)
+    }
+    
+    func test_add_numbersBiggerThan1000AreIgnored() {
+        expect(numbers: "1,2,3,999", result: 1005)
+        expect(numbers: "1,2,3,1000", result: 1006)
+        expect(numbers: "1,2,3,1001", result: 6)
     }
     
     // MARK: Helpers
