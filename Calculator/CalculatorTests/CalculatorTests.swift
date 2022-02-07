@@ -21,13 +21,12 @@ class StringCalculator {
     weak var delegate: StringCalculatorDelegate?
     
     func add(numbers: String) throws -> Int {
-        let delimiter = parseDelimiter(numbers)
+        let delimiters = parseDelimiter(numbers)
         calledCount += 1
         let result = try numbers
-            .replacingOccurrences(of: "//[\(delimiter)]\n", with: "")
-            .replacingOccurrences(of: "//\(delimiter)\n", with: "")
+            .removeDelimiters()
             .replacingOccurrences(of: "\n", with: ",")
-            .components(separatedBy: delimiter)
+            .components(separatedBy: delimiters.first!)
             .compactMap { Int($0) }
             .verifyAllNumbersPositive()
             .filter { $0 <= 1000 }
@@ -39,22 +38,32 @@ class StringCalculator {
     
     var calledCount = 0
     
-    private func parseDelimiter(_ numbers: String) -> String {
+    private func parseDelimiter(_ numbers: String) -> [String] {
         guard numbers.hasPrefix("//") else {
-            return ","
+            return [","]
         }
         
-        return parseDelimiterWithVariableLength(numbers) ?? String(numbers[numbers.index(numbers.startIndex, offsetBy: 2)])
+        return parseDelimiterWithVariableLength(numbers) ?? [String(numbers[numbers.index(numbers.startIndex, offsetBy: 2)])]
     }
     
-    private func parseDelimiterWithVariableLength(_ numbers: String) -> String? {
+    private func parseDelimiterWithVariableLength(_ numbers: String) -> [String]? {
         guard let openingBracesIndex = numbers.firstIndex(of: "["),
               let closingBracesIndex = numbers.firstIndex(of: "]") else {
             return nil
         }
     
-        return String(numbers[numbers.index(after: openingBracesIndex)..<closingBracesIndex])
+        return [String(numbers[numbers.index(after: openingBracesIndex)..<closingBracesIndex])]
     }
+}
+
+fileprivate extension String {
+    func removeDelimiters() -> String {
+        guard let indexOfNewLine = self.firstIndex(of: "\n"), self.hasPrefix("//") else {
+            return self
+        }
+        return String(self.suffix(from: self.index(after: indexOfNewLine)))
+    }
+    
 }
 
 fileprivate extension Array where Element == Int {
