@@ -21,12 +21,13 @@ class StringCalculator {
     weak var delegate: StringCalculatorDelegate?
     
     func add(numbers: String) throws -> Int {
-        let delimiters = parseDelimiter(numbers)
+        let delimiters = parseDelimiter(numbers).reduce("",+)
+        let set = CharacterSet(charactersIn: delimiters)
         calledCount += 1
         let result = try numbers
             .removeDelimiters()
             .replacingOccurrences(of: "\n", with: ",")
-            .components(separatedBy: delimiters.first!)
+            .components(separatedBy: set)
             .compactMap { Int($0) }
             .verifyAllNumbersPositive()
             .filter { $0 <= 1000 }
@@ -43,16 +44,38 @@ class StringCalculator {
             return [","]
         }
         
-        return parseDelimiterWithVariableLength(numbers) ?? [String(numbers[numbers.index(numbers.startIndex, offsetBy: 2)])]
+        let delimitersInBrackets = matches(for: "\\[(.*?)\\]", in: numbers)
+        
+        let foo = delimitersInBrackets.compactMap { parseDelimiterWithVariableLength($0) }
+        
+        if foo.isEmpty {
+            return [String(numbers[numbers.index(numbers.startIndex, offsetBy: 2)])]
+        }
+        
+        return foo
     }
     
-    private func parseDelimiterWithVariableLength(_ numbers: String) -> [String]? {
+    private func parseDelimiterWithVariableLength(_ numbers: String) -> String? {
         guard let openingBracesIndex = numbers.firstIndex(of: "["),
               let closingBracesIndex = numbers.firstIndex(of: "]") else {
             return nil
         }
+        
+        return String(numbers[numbers.index(after: openingBracesIndex)..<closingBracesIndex])
+    }
     
-        return [String(numbers[numbers.index(after: openingBracesIndex)..<closingBracesIndex])]
+    func matches(for regex: String, in text: String) -> [String] {
+        do {
+            let regex = try NSRegularExpression(pattern: regex)
+            let results = regex.matches(in: text,
+                                        range: NSRange(text.startIndex..., in: text))
+            return results.map {
+                String(text[Range($0.range, in: text)!])
+            }
+        } catch let error {
+            print("invalid regex: \(error.localizedDescription)")
+            return []
+        }
     }
 }
 
@@ -63,7 +86,6 @@ fileprivate extension String {
         }
         return String(self.suffix(from: self.index(after: indexOfNewLine)))
     }
-    
 }
 
 fileprivate extension Array where Element == Int {
@@ -112,6 +134,10 @@ class CalculatorTests: XCTestCase {
     
     func test_add_withVariableDelimiterLenght() {
         expect(numbers: "//[***]\n1***2***3", result: 6)
+    }
+    
+    func test_add_withMultipleDelimiters() {
+        expect(numbers: "//[*][%]\n1*2%3", result: 6)
     }
     
     func test_add_stringWithNegative() {
