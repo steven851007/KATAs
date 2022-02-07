@@ -8,22 +8,31 @@
 import XCTest
 import Calculator
 
+protocol StringCalculatorDelegate: AnyObject {
+    func didFinishAdd()
+}
+
 class StringCalculator {
     
     enum CalculatorError: Error, Equatable {
         case negativeNumber(message: String)
     }
     
+    weak var delegate: StringCalculatorDelegate?
+    
     func add(numbers: String) throws -> Int {
         let delimiter = parseDelimiter(numbers)
         calledCount += 1
-        return try numbers
+        let result = try numbers
             .replacingOccurrences(of: "//\(delimiter)\n", with: "")
             .replacingOccurrences(of: "\n", with: ",")
             .split(separator: delimiter)
             .compactMap { Int($0) }
             .verifyAllNumbersPositive()
             .reduce(0,+)
+        
+        delegate?.didFinishAdd()
+        return result
     }
     
     var calledCount = 0
@@ -90,27 +99,53 @@ class CalculatorTests: XCTestCase {
         expectError(numbers: "1,-2,-3,-4", expectedError: expectedError)
     }
     
-    func test_calledCount() {
-        let sut = StringCalculator()
+    func test_calledCount() throws {
+        let (sut, _) = createSUT()
         XCTAssertEqual(0, sut.calledCount)
         
-        expect(numbers: "1", result: 1, calculator: sut)
+        let _ = try sut.add(numbers: "5")
         XCTAssertEqual(1, sut.calledCount)
         
-        expect(numbers: "//;\n1;2", result: 3, calculator: sut)
+        let _ = try sut.add(numbers: "//;\n1;2")
         XCTAssertEqual(2, sut.calledCount)
+    }
+    
+    func test_addDelegate() throws {
+        let (sut, delegateSpy) = createSUT()
+        
+        let _ = try sut.add(numbers: "5")
+        
+        XCTAssertEqual(delegateSpy.didFinishAddCalledCount, 1)
     }
     
     // MARK: Helpers
     
-    private func expect(numbers: String, result: Int, calculator: StringCalculator = StringCalculator(), file: StaticString = #file, line: UInt = #line) {
-        XCTAssertEqual(try calculator.add(numbers: numbers), result, file: file, line: line)
+    private func createSUT() -> (StringCalculator, DelegateSpy) {
+        let sut = StringCalculator()
+        let delegateSpy = DelegateSpy()
+        sut.delegate = delegateSpy
+        
+        return (sut, delegateSpy)
     }
     
-    private func expectError(numbers: String, expectedError: StringCalculator.CalculatorError, calculator: StringCalculator = StringCalculator(), file: StaticString = #file, line: UInt = #line) {
-        XCTAssertThrowsError(try calculator.add(numbers: numbers), file: file, line: line) { error in
+    private func expect(numbers: String, result: Int, file: StaticString = #file, line: UInt = #line) {
+        XCTAssertEqual(try StringCalculator().add(numbers: numbers), result, file: file, line: line)
+    }
+    
+    private func expectError(numbers: String, expectedError: StringCalculator.CalculatorError, file: StaticString = #file, line: UInt = #line) {
+        XCTAssertThrowsError(try StringCalculator().add(numbers: numbers), file: file, line: line) { error in
             XCTAssertEqual(error as! StringCalculator.CalculatorError, expectedError, file: file, line: line)
+        }
+    }
+    
+    private class DelegateSpy: StringCalculatorDelegate {
+        
+        var didFinishAddCalledCount = 0
+        
+        func didFinishAdd() {
+            didFinishAddCalledCount += 1
         }
     }
 
 }
+
