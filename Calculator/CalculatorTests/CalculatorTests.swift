@@ -21,13 +21,11 @@ class StringCalculator {
     weak var delegate: StringCalculatorDelegate?
     
     func add(numbers: String) throws -> Int {
-        let delimiters = parseDelimiter(numbers).reduce("",+)
-        let set = CharacterSet(charactersIn: delimiters)
         calledCount += 1
         let result = try numbers
             .removeDelimiters()
             .replacingOccurrences(of: "\n", with: ",")
-            .components(separatedBy: set)
+            .components(separatedBy: parseDelimiter(numbers))
             .compactMap { Int($0) }
             .verifyAllNumbersPositive()
             .filter { $0 <= 1000 }
@@ -39,20 +37,21 @@ class StringCalculator {
     
     var calledCount = 0
     
-    private func parseDelimiter(_ numbers: String) -> [String] {
+    private func parseDelimiter(_ numbers: String) -> CharacterSet {
         guard numbers.hasPrefix("//") else {
-            return [","]
+            return CharacterSet(charactersIn: ",")
         }
         
-        let delimitersInBrackets = matches(for: "\\[(.*?)\\]", in: numbers)
+        let thirdCharacter = String(numbers[numbers.index(numbers.startIndex, offsetBy: 2)])
         
-        let foo = delimitersInBrackets.compactMap { parseDelimiterWithVariableLength($0) }
+        let delimiters = numbers
+            .delimitersnInBrackets()
+            .compactMap { parseDelimiterWithVariableLength($0) }
+            .reduce("",+)
         
-        if foo.isEmpty {
-            return [String(numbers[numbers.index(numbers.startIndex, offsetBy: 2)])]
-        }
+        let charactersString = delimiters.isEmpty ? thirdCharacter : delimiters
         
-        return foo
+        return CharacterSet(charactersIn: charactersString)
     }
     
     private func parseDelimiterWithVariableLength(_ numbers: String) -> String? {
@@ -63,23 +62,19 @@ class StringCalculator {
         
         return String(numbers[numbers.index(after: openingBracesIndex)..<closingBracesIndex])
     }
-    
-    func matches(for regex: String, in text: String) -> [String] {
-        do {
-            let regex = try NSRegularExpression(pattern: regex)
-            let results = regex.matches(in: text,
-                                        range: NSRange(text.startIndex..., in: text))
-            return results.map {
-                String(text[Range($0.range, in: text)!])
-            }
-        } catch let error {
-            print("invalid regex: \(error.localizedDescription)")
-            return []
-        }
-    }
 }
 
 fileprivate extension String {
+    
+    func delimitersnInBrackets() -> [String] {
+        let regex = try! NSRegularExpression(pattern: "\\[(.*?)\\]")
+        let results = regex.matches(in: self,
+                                    range: NSRange(self.startIndex..., in: self))
+        return results.map {
+            String(self[Range($0.range, in: self)!])
+        }
+    }
+    
     func removeDelimiters() -> String {
         guard let indexOfNewLine = self.firstIndex(of: "\n"), self.hasPrefix("//") else {
             return self
