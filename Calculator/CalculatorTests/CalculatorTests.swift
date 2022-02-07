@@ -24,9 +24,10 @@ class StringCalculator {
         let delimiter = parseDelimiter(numbers)
         calledCount += 1
         let result = try numbers
+            .replacingOccurrences(of: "//[\(delimiter)]\n", with: "")
             .replacingOccurrences(of: "//\(delimiter)\n", with: "")
             .replacingOccurrences(of: "\n", with: ",")
-            .split(separator: delimiter)
+            .components(separatedBy: delimiter)
             .compactMap { Int($0) }
             .verifyAllNumbersPositive()
             .filter { $0 <= 1000 }
@@ -38,11 +39,21 @@ class StringCalculator {
     
     var calledCount = 0
     
-    private func parseDelimiter(_ numbers: String) -> Character {
+    private func parseDelimiter(_ numbers: String) -> String {
         guard numbers.hasPrefix("//") else {
             return ","
         }
-        return numbers[numbers.index(numbers.startIndex, offsetBy: 2)]
+        
+        return parseDelimiterWithVariableLength(numbers) ?? String(numbers[numbers.index(numbers.startIndex, offsetBy: 2)])
+    }
+    
+    private func parseDelimiterWithVariableLength(_ numbers: String) -> String? {
+        guard let openingBracesIndex = numbers.firstIndex(of: "["),
+              let closingBracesIndex = numbers.firstIndex(of: "]") else {
+            return nil
+        }
+    
+        return String(numbers[numbers.index(after: openingBracesIndex)..<closingBracesIndex])
     }
 }
 
@@ -88,6 +99,10 @@ class CalculatorTests: XCTestCase {
     
     func test_add_stringWithDifferentDelimiter() {
         expect(numbers: "//;\n1;2", result: 3)
+    }
+    
+    func test_add_withVariableDelimiterLenght() {
+        expect(numbers: "//[***]\n1***2***3", result: 6)
     }
     
     func test_add_stringWithNegative() {
