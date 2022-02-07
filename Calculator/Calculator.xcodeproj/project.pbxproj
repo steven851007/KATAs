@@ -11,6 +11,7 @@
 		87768E7527ABEC8900308221 /* Calculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87768E6A27ABEC8900308221 /* Calculator.framework */; };
 		87768E7A27ABEC8900308221 /* CalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87768E7927ABEC8900308221 /* CalculatorTests.swift */; };
 		87768E7B27ABEC8A00308221 /* Calculator.h in Headers */ = {isa = PBXBuildFile; fileRef = 87768E6D27ABEC8900308221 /* Calculator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8785330A27B10A7E00A7CE67 /* StringCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8785330927B10A7E00A7CE67 /* StringCalculator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		87768E6E27ABEC8900308221 /* Calculator.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Calculator.docc; sourceTree = "<group>"; };
 		87768E7427ABEC8900308221 /* CalculatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		87768E7927ABEC8900308221 /* CalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorTests.swift; sourceTree = "<group>"; };
+		8785330927B10A7E00A7CE67 /* StringCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCalculator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				87768E6D27ABEC8900308221 /* Calculator.h */,
+				8785330927B10A7E00A7CE67 /* StringCalculator.swift */,
 				87768E6E27ABEC8900308221 /* Calculator.docc */,
 			);
 			path = Calculator;
@@ -194,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8785330A27B10A7E00A7CE67 /* StringCalculator.swift in Sources */,
 				87768E6F27ABEC8900308221 /* Calculator.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,6 +399,7 @@
 		87768E8227ABEC8A00308221 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -409,6 +414,7 @@
 		87768E8327ABEC8A00308221 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
