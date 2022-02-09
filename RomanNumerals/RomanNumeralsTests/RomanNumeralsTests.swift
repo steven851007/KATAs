@@ -11,22 +11,16 @@ import RomanNumerals
 class RomanNumberCalculator {
     
     static func value(from string: String) -> Int {
-        var finalValue = 0
         var prevCharValue = 0
         var currentCharValue = Int.max
         
-        string.forEach { character in
+        return string.reduce(0) { partialResult, character in
             prevCharValue = currentCharValue
             currentCharValue = self.value(of: character)
             
-            if prevCharValue < currentCharValue {
-                finalValue += currentCharValue - 2*prevCharValue
-            } else {
-                finalValue += currentCharValue
-            }
-            
+            let substract = prevCharValue < currentCharValue ? 2*prevCharValue : 0
+            return partialResult + currentCharValue - substract
         }
-        return finalValue
     }
     private static func value(of character: Character) -> Int {
         switch character {
